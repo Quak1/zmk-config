@@ -11,15 +11,15 @@
 
 #define COLEMAK 0
 #define QWERTY  1
-#define LOW     2
-#define UPP     3
+#define LOWER   2
+#define RAISE   3
 #define CONFIG  4
 
 / {
     conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {
-            if-layers = <LOW UPP>;
+            if-layers = <LOWER RAISE>;
             then-layer = <CONFIG>;
         };
     };
@@ -35,11 +35,11 @@
 // | SHIFT |  Z  |  X  |  C   |  V   |  B   |  MUTE  |  |       |  K   |  M    |  ,    |  .   |   /   | SHIFT |
 //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
             bindings = <
-&kp GRAVE &kp N1 &kp N2   &kp N3   &kp N4    &kp N5                        &kp N6   &kp N7    &kp N8    &kp N9   &kp N0   &none
-&kp TAB   &kp Q  &kp W    &kp F    &kp P     &kp G                         &kp J    &kp L     &kp U     &kp Y    &kp SEMI &kp BSPC
-&kp ESC   &kp A  &kp R    &kp S    &kp T     &kp D                         &kp H    &kp N     &kp E     &kp I    &kp O    &kp SQT
-&kp LSHFT &kp Z  &kp X    &kp C    &kp V     &kp B    &kp C_MUTE &trans    &kp K    &kp M     &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
-                 &kp LGUI &kp LALT &kp LCTRL &mo LOW  &kp RET    &kp SPACE &mo UPP  &kp RCTRL &kp RALT  &kp RGUI
+&kp GRAVE &kp N1 &kp N2   &kp N3   &kp N4    &kp N5                         &kp N6    &kp N7    &kp N8    &kp N9   &kp N0   &none
+&kp TAB   &kp Q  &kp W    &kp F    &kp P     &kp G                          &kp J     &kp L     &kp U     &kp Y    &kp SEMI &kp BSPC
+&kp ESC   &kp A  &kp R    &kp S    &kp T     &kp D                          &kp H     &kp N     &kp E     &kp I    &kp O    &kp SQT
+&kp LSHFT &kp Z  &kp X    &kp C    &kp V     &kp B     &kp C_MUTE &trans    &kp K     &kp M     &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
+                 &kp LGUI &kp LALT &kp LCTRL &mo LOWER &kp RET    &kp SPACE &mo RAISE &kp RCTRL &kp RALT  &kp RGUI
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_UP PG_DN>;
@@ -53,11 +53,11 @@
 // | SHIFT |  Z  |  X  |  C   |  V   |  B   |  MUTE  |  |       |  N   |  M    |  ,    |  .   |   /   | SHIFT |
 //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
             bindings = <
-&kp GRAVE &kp N1 &kp N2   &kp N3   &kp N4    &kp N5                       &kp N6   &kp N7    &kp N8    &kp N9   &kp N0   &none
-&kp TAB   &kp Q  &kp W    &kp E    &kp R     &kp T                        &kp Y    &kp U     &kp I     &kp O    &kp P    &kp BSPC
-&kp ESC   &kp A  &kp S    &kp D    &kp F     &kp G                        &kp H    &kp J     &kp K     &kp L    &kp SEMI &kp SQT
-&kp LSHFT &kp Z  &kp X    &kp C    &kp V     &kp B   &kp C_MUTE &none     &kp N    &kp M     &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
-                 &kp LGUI &kp LALT &kp LCTRL &mo LOW &kp RET    &kp SPACE &mo UPP  &kp RCTRL &kp RALT  &kp RGUI
+&kp GRAVE &kp N1 &kp N2   &kp N3   &kp N4    &kp N5                         &kp N6    &kp N7    &kp N8    &kp N9   &kp N0   &none
+&kp TAB   &kp Q  &kp W    &kp E    &kp R     &kp T                          &kp Y     &kp U     &kp I     &kp O    &kp P    &kp BSPC
+&kp ESC   &kp A  &kp S    &kp D    &kp F     &kp G                          &kp H     &kp J     &kp K     &kp L    &kp SEMI &kp SQT
+&kp LSHFT &kp Z  &kp X    &kp C    &kp V     &kp B   &kp C_MUTE &none       &kp N     &kp M     &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
+                 &kp LGUI &kp LALT &kp LCTRL &mo LOWER &kp RET    &kp SPACE &mo RAISE &kp RCTRL &kp RALT  &kp RGUI
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_UP PG_DN>;
