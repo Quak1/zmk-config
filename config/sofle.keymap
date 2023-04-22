@@ -9,10 +9,10 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
 
-#define DEFAULT 0
+#define COLEMAK 0
+#define QWERTY  1
 #define LOW     2
 #define UPP     3
-#define CLK     1
 #define CONFIG  4
 
 / {
@@ -27,24 +27,6 @@
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
-// ------------------------------------------------------------------------------------------------------------
-// |  `    |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |       |
-// |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   | BKSPC |
-// |  ESC  |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |   '   |
-// | SHIFT |  Z  |  X  |  C   |  V   |  B   |  MUTE  |  |       |  N   |  M    |  ,    |  .   |   /   | SHIFT |
-//               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
-            bindings = <
-&kp GRAVE &kp N1 &kp N2   &kp N3   &kp N4    &kp N5                       &kp N6   &kp N7    &kp N8    &kp N9   &kp N0   &none
-&kp TAB   &kp Q  &kp W    &kp E    &kp R     &kp T                        &kp Y    &kp U     &kp I     &kp O    &kp P    &kp BSPC
-&kp ESC   &kp A  &kp S    &kp D    &kp F     &kp G                        &kp H    &kp J     &kp K     &kp L    &kp SEMI &kp SQT
-&kp LSHFT &kp Z  &kp X    &kp C    &kp V     &kp B   &kp C_MUTE &none     &kp N    &kp M     &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
-                 &kp LGUI &kp LALT &kp LCTRL &mo LOW &kp RET    &kp SPACE &mo UPP  &kp RCTRL &kp RALT  &kp RGUI
-            >;
-
-            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_UP PG_DN>;
-        };
-
         colemak {
 // ------------------------------------------------------------------------------------------------------------
 // |  `    |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |       |
@@ -58,6 +40,24 @@
 &kp ESC   &kp A  &kp R    &kp S    &kp T     &kp D                         &kp H    &kp N     &kp E     &kp I    &kp O    &kp SQT
 &kp LSHFT &kp Z  &kp X    &kp C    &kp V     &kp B    &kp C_MUTE &trans    &kp K    &kp M     &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
                  &kp LGUI &kp LALT &kp LCTRL &mo LOW  &kp RET    &kp SPACE &mo UPP  &kp RCTRL &kp RALT  &kp RGUI
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_UP PG_DN>;
+        };
+
+        qwerty {
+// ------------------------------------------------------------------------------------------------------------
+// |  `    |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |       |
+// |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   | BKSPC |
+// |  ESC  |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |   '   |
+// | SHIFT |  Z  |  X  |  C   |  V   |  B   |  MUTE  |  |       |  N   |  M    |  ,    |  .   |   /   | SHIFT |
+//               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
+            bindings = <
+&kp GRAVE &kp N1 &kp N2   &kp N3   &kp N4    &kp N5                       &kp N6   &kp N7    &kp N8    &kp N9   &kp N0   &none
+&kp TAB   &kp Q  &kp W    &kp E    &kp R     &kp T                        &kp Y    &kp U     &kp I     &kp O    &kp P    &kp BSPC
+&kp ESC   &kp A  &kp S    &kp D    &kp F     &kp G                        &kp H    &kp J     &kp K     &kp L    &kp SEMI &kp SQT
+&kp LSHFT &kp Z  &kp X    &kp C    &kp V     &kp B   &kp C_MUTE &none     &kp N    &kp M     &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
+                 &kp LGUI &kp LALT &kp LCTRL &mo LOW &kp RET    &kp SPACE &mo UPP  &kp RCTRL &kp RALT  &kp RGUI
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_UP PG_DN>;
@@ -104,15 +104,15 @@
 // ------------------------------------------------------------------------------------------------------------
 // |BTCLR| BT1  | BT2  | BT3  | BT4  | BT5  |                |      |      |      |      |      |       |
 // |     |      |      |      |      |      |                |      |      |      |      |      |OUT_USB|
-// |CLMK |      |      |      |      |      |                |      |      |      |      |      |OUT_BLE|
+// |QWERT|      |      |      |      |      |                |      |      |      |      |      |OUT_BLE|
 // |     |      |      |      |      |      |      |  |      |      |      |      |      |      |OUT_TOG|
 //              |      |      |      |      |      |  |      |      |      |      |      |      |
             bindings = <
-&bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4               &none &none &none &none &none &none
-&none      &none        &none        &none        &none        &none                      &none &none &none &none &none &out OUT_USB
-&tog CLK   &none        &none        &none        &none        &none                      &none &none &none &none &none &out OUT_BLE
-&none      &none        &none        &none        &none        &none       &none   &none  &none &none &none &none &none &out OUT_TOG
-                        &none        &none        &none        &none       &none   &none  &none &none &none &none
+&bt BT_CLR  &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4               &none &none &none &none &none &none
+&none       &none        &none        &none        &none        &none                      &none &none &none &none &none &out OUT_USB
+&tog QWERTY &none        &none        &none        &none        &none                      &none &none &none &none &none &out OUT_BLE
+&none       &none        &none        &none        &none        &none       &none   &none  &none &none &none &none &none &out OUT_TOG
+            &none        &none        &none        &none        &none       &none   &none  &none &none &none
             >;
         };
     };
